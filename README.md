@@ -18,8 +18,8 @@ This is my implementation of a responsive website frontend, built as part of a t
 ## 🚀 Getting Started
 1. **Clone the repo**
    ```bash
-   git clone <repo-url>
-   cd supreme-group
+   git clone https://github.com/Mark-218/suprime-group.git
+   cd suprime-group
    ```
 2. **Install dependencies**
    ```bash
