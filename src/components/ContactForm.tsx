@@ -2,7 +2,7 @@ import React from "react";
 
 const ContactForm: React.FC = () => {
   return (
-    <form className="col-span-10 lg:col-span-5 grid grid-cols-1 gap-5 w-full max-w-[500px] mx-auto">
+    <form className="col-span-10 lg:col-span-5 grid grid-cols-1 gap-5 w-full max-w-full">
       <input
         type="text"
         placeholder="Full name"
