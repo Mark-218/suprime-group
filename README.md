@@ -2,8 +2,8 @@
 
 This is my implementation of a responsive website frontend, built as part of a technical assessment task. It is developed using Next.js, TypeScript, and Tailwind CSS, carefully following the design specifications provided in the Figma file.
 
-**Live Demo:** _[Vercel link here]_  
-**GitHub:** _[Repo link here]_
+**Live Demo:** _[https://suprime-web.vercel.app/]_  
+**GitHub:** _[https://github.com/Mark-218/suprime-group]_
 
 ---
 
