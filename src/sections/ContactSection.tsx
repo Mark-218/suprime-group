@@ -11,7 +11,7 @@ const ContactSection: React.FC = () => {
           
           <div className="col-span-12 lg:col-span-10 px-4 sm:px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-10 gap-10 lg:gap-16">
             <ContactInfo />
-            {/* <ContactForm /> */}
+            <ContactForm />
           </div>
 
           <div className="hidden lg:block col-span-1" />

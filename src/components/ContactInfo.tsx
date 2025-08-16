@@ -2,7 +2,7 @@ import React from "react";
 
 const ContactInfo: React.FC = () => {
   return (
-    <div className="col-span-10 lg:col-span-5 flex flex-col justify-center">
+    <div className="w-full max-w-full px-4 sm:px-0 flex flex-col justify-center">
       <h2 className="text-2xl lg:text-[20px] font-semibold mb-3">Get in touch</h2>
       <div className="w-10 h-[2px] bg-white mb-5"></div>
       <p className="mb-6 text-base lg:text-sm opacity-90">For general enquiries</p>
