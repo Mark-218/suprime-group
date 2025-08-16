@@ -12,7 +12,7 @@ interface VehicleControlsProps {
   partsData: Part[];
   selectedPart: string;
   onSelectPart: (id: string) => void;
-  iconScrollRef: RefObject<HTMLDivElement | null>; // ✅ fixed typing
+  iconScrollRef: RefObject<HTMLDivElement | null>;
   togglePlay: () => void;
   isPlaying: boolean;
   progress: number;
@@ -29,37 +29,49 @@ const VehicleControls: React.FC<VehicleControlsProps> = ({
 }) => {
   return (
     <div className="mt-15 flex items-center justify-between w-full flex-col lg:flex-row">
+      {/* Icon List */}
       <div
         ref={iconScrollRef}
-        className="flex-1 flex items-center justify-center gap-4 md:gap-6 overflow-x-auto scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-transparent lg:justify-center"
+        className="flex-1 flex items-center justify-center 
+                   gap-2 sm:gap-4 md:gap-6 
+                   overflow-x-auto scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-transparent 
+                   lg:justify-center"
       >
         {partsData.map((part) => (
           <div
             key={part.id}
             onClick={() => onSelectPart(part.id)}
             className={clsx(
-              "cursor-pointer flex flex-col items-center transition-all duration-300 min-w-[60px]",
-              selectedPart === part.id ? "text-white" : "text-gray-500 hover:text-white"
+              "cursor-pointer flex flex-col items-center transition-all duration-300 min-w-[45px] sm:min-w-[55px] md:min-w-[60px]",
+              selectedPart === part.id
+                ? "text-white"
+                : "text-gray-500 hover:text-white"
             )}
           >
             <img
               src={part.icon}
               alt={part.label}
               className={clsx(
-                "mx-3 mb-1 h-9 w-9 md:h-15 md:w-15 object-contain transition-all",
-                selectedPart === part.id ? "opacity-100 scale-110" : "opacity-50 hover:opacity-80"
+                "mx-2 sm:mx-3 mb-1 h-7 w-7 sm:h-9 sm:w-9 md:h-15 md:w-15 object-contain transition-all",
+                selectedPart === part.id
+                  ? "opacity-100 scale-110"
+                  : "opacity-50 hover:opacity-80"
               )}
             />
-            <span className="text-[10px] md:text-[12px] whitespace-nowrap">{part.label}</span>
+            <span className="text-[9px] sm:text-[10px] md:text-[12px] whitespace-nowrap">
+              {part.label}
+            </span>
           </div>
         ))}
       </div>
 
+      {/* Play/Pause Button */}
       <div className="mt-4 lg:mt-0 lg:ml-4">
         <button
           onClick={togglePlay}
           className="relative w-14 h-14 rounded-full flex items-center justify-center bg-black/60 border-white hover:bg-black/80"
         >
+          {/* Circular Progress */}
           <svg className="absolute inset-0 w-full h-full -rotate-90">
             <circle
               className="text-gray-700"
