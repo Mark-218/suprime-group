@@ -20,11 +20,18 @@ const VehicleCategoryTabs: React.FC<VehicleCategoryTabsProps> = ({
   selectedCategory,
   onSelectCategory,
 }) => {
-  const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const [indicatorStyle, setIndicatorStyle] = useState({ top: 0, height: 0 });
-  const [trackStyle, setTrackStyle] = useState({ top: 0, height: 0 });
+  // ✅ Fix: Properly type + initialize refs
+  const itemRefs = useRef<Array<HTMLDivElement | null>>([]);
 
-  // Update indicator + track on resize or selection
+  const [indicatorStyle, setIndicatorStyle] = useState<{ top: number; height: number }>({
+    top: 0,
+    height: 0,
+  });
+  const [trackStyle, setTrackStyle] = useState<{ top: number; height: number }>({
+    top: 0,
+    height: 0,
+  });
+
   useEffect(() => {
     const updatePositions = () => {
       const index = categories.findIndex((cat) => cat.id === selectedCategory);
@@ -35,11 +42,11 @@ const VehicleCategoryTabs: React.FC<VehicleCategoryTabsProps> = ({
         const parentRect = parent.getBoundingClientRect();
         const rect = element.getBoundingClientRect();
 
-        // Indicator
+        // Active indicator
         const top = rect.top - parentRect.top;
         setIndicatorStyle({ top, height: rect.height });
 
-        // Track (from first to last)
+        // Track (first → last)
         const first = itemRefs.current[0]?.getBoundingClientRect();
         const last =
           itemRefs.current[categories.length - 1]?.getBoundingClientRect();
@@ -60,7 +67,7 @@ const VehicleCategoryTabs: React.FC<VehicleCategoryTabsProps> = ({
   return (
     <div className="lg:w-[300px] flex flex-col justify-center relative">
       <div className="relative pl-6 flex flex-col justify-center">
-        {/* Gray base line (track) */}
+        {/* Gray track */}
         <div
           className="absolute left-0 w-0.5 bg-gray-600 rounded"
           style={trackStyle}
@@ -73,7 +80,9 @@ const VehicleCategoryTabs: React.FC<VehicleCategoryTabsProps> = ({
         {categories.map((cat, i) => (
           <div
             key={cat.id}
-            ref={(el) => (itemRefs.current[i] = el)}
+            ref={(el) => {
+              itemRefs.current[i] = el; // ✅ safe assignment
+            }}
             onClick={() => onSelectCategory(cat.id)}
             className={clsx(
               "relative mb-4 sm:mb-6 cursor-pointer transition-all duration-300 ease-in-out py-2",
